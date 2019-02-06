@@ -3,10 +3,13 @@
 const express = require('express');
 const logger = require('./logger');
 
+require('dotenv').config();
+
 const argv = require('./argv');
 const port = require('./port');
 const setup = require('./middlewares/frontendMiddleware');
 
+const sequelize = require('./sequelize');
 const apiRouter = require('./api/');
 
 const isDev = process.env.NODE_ENV !== 'production';
@@ -18,6 +21,11 @@ const { resolve } = require('path');
 const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
+// Make the DB accessible to the router
+app.use(function (req, res, next){
+  req.db = sequelize;
+  next();
+});
 app.use('/api/v1', apiRouter);
 
 // In production we need to pass these values in instead of relying on webpack

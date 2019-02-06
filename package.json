@@ -64,6 +64,7 @@
     "compression": "1.7.3",
     "connected-react-router": "4.5.0",
     "cross-env": "5.2.0",
+    "dotenv": "^6.2.0",
     "express": "4.16.4",
     "fontfaceobserver": "2.0.13",
     "history": "4.7.2",
@@ -75,6 +76,7 @@
     "loadable-components": "2.2.3",
     "lodash": "4.17.11",
     "minimist": "1.2.0",
+    "mysql2": "^1.6.4",
     "prop-types": "15.6.2",
     "react": "16.6.0",
     "react-dom": "16.6.0",
@@ -87,6 +89,7 @@
     "redux-saga": "0.16.2",
     "reselect": "4.0.0",
     "sanitize.css": "4.1.0",
+    "sequelize": "^4.42.0",
     "styled-components": "4.0.2",
     "warning": "4.0.2"
   },
