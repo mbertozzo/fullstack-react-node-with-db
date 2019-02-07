@@ -1,26 +1,46 @@
 const express = require('express');
 const router = express.Router();
 
+const database = require('./sequelize');
+const sequelize = database.sequelize;
+const User = database.User;
+
 router.get('/', function (req, res){
-  res.status(200).send({
+  res.status(200).json({
     message: 'Hello from custom API',
   });
 })
 
-router.get('/dbtest', function (req,res){
-  var db = req.db;
-  db
-  .authenticate()
+router.get('/test-db', function (req, res){
+  sequelize
+    .authenticate()
+    .then(() => {
+      res.status(200).send({
+        message: 'Connection to DB established correctly.'
+      })
+    })
+    .catch(err => {
+      res.status(503).json({
+        message: 'Unable to connect to the database.'
+      })
+    });
+})
+
+router.get('/create-table', function (req, res){
+  User
+  .sync({force: true})
   .then(() => {
-    res.status(200).send({
-      message: 'Connection to DB established correctly.'
+    res.status(200).json({
+      message: 'DB table created successfully.'
     })
   })
   .catch(err => {
-    res.status(503).send({
-      message: 'Unable to connect to the database.'
+    res.status(503).json({
+      message: 'Error creating DB table.'
     })
-  });
+  })
 })
+
+router.use('/users', require('./routes/users'));
 
 module.exports = router;

@@ -18,11 +18,29 @@ DB_PASS=your_password
 ```
 
 To start the server just use `$ npm start`.
-You can then check if the connection to your DB is successfully established by reaching the following URL: `http://localhost:3000/api/v1/dbtest`. As a response you should get:
+You can then check if the connection to your DB is successfully established by reaching the following URL: `http://localhost:3000/api/v1/test-db`. As a response you should get:
 
-```
+```json
 {
   "message": "Connection to DB established correctly."
+}
+```
+
+## Available features and routes
+At this stage, the endpoints defined are:
+
+* [**GET**] `/api/v1/test-db` &rarr; try to connect to the database and returns a success or failure message.
+* [**GET**] `/api/v1/create-table` &rarr; create the table `user` (the structure is defined in `/server/api/models`). If the table already exists, drop and reinitialize it.
+* [**GET**] `/api/v1/users/all` &rarr; return all records in the `user` table.
+* [**POST**] `/api/v1/users/add` &rarr; add a record to the `user` table. Structure the request body as follows:
+
+```json
+{
+  "firstName": "firstNameValue",
+  "lastName": "lastNameValue",
+  "email": "emailValue",
+  "username": "usernameValue",
+  "password": "passwordValue"
 }
 ```
 
