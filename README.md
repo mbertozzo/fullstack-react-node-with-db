@@ -26,6 +26,8 @@ You can then check if the connection to your DB is successfully established by r
 }
 ```
 
+If you want to use `nodemon` to reload Node every time the source code is changed, you can use `$ npm run start:be`. 
+
 ## Available features and routes
 At this stage, the endpoints defined are:
 

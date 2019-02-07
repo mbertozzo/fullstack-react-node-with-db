@@ -1,13 +1,19 @@
-/**
- * Homepage selectors
- */
-
 import { createSelector } from 'reselect';
-import { initialState } from './reducer';
 
-const selectHome = state => state.get('home', initialState);
+const selectHome = state => state.get('home');
 
-const makeSelectUsername = () =>
-  createSelector(selectHome, homeState => homeState.get('username'));
+const selectRouter = state => state.get('router');
 
-export { selectHome, makeSelectUsername };
+const makeSelectUsers = () =>
+  createSelector(selectHome, state => state.get('data'));
+
+const makeSelectLocation = () =>
+  createSelector(selectRouter, routerState =>
+    routerState.get('location').toJS(),
+  );
+
+export {
+  selectHome,
+  makeSelectUsers,
+  makeSelectLocation,
+};

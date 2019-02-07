@@ -1,5 +1,5 @@
 /*
- * Home Actions
+ * App Actions
  *
  * Actions change things in your application
  * Since this boilerplate uses a uni-directional data flow, specifically redux,
@@ -15,18 +15,44 @@
  *    }
  */
 
-import { CHANGE_USERNAME } from './constants';
+import { LOAD_REPOS, LOAD_REPOS_SUCCESS, LOAD_REPOS_ERROR } from './constants';
 
 /**
- * Changes the input field of the form
+ * Load the repositories, this action starts the request saga
  *
- * @param  {name} name The new text of the input field
- *
- * @return {object}    An action object with a type of CHANGE_USERNAME
+ * @return {object} An action object with a type of LOAD_REPOS
  */
-export function changeUsername(name) {
+export function loadRepos() {
   return {
-    type: CHANGE_USERNAME,
-    name,
+    type: LOAD_REPOS,
+  };
+}
+
+/**
+ * Dispatched when the repositories are loaded by the request saga
+ *
+ * @param  {array} repos The repository data
+ * @param  {string} username The current username
+ *
+ * @return {object}      An action object with a type of LOAD_REPOS_SUCCESS passing the repos
+ */
+export function reposLoaded(payload) {
+  return {
+    type: LOAD_REPOS_SUCCESS,
+    payload
+  };
+}
+
+/**
+ * Dispatched when loading the repositories fails
+ *
+ * @param  {object} error The error
+ *
+ * @return {object}       An action object with a type of LOAD_REPOS_ERROR passing the error
+ */
+export function repoLoadingError(error) {
+  return {
+    type: LOAD_REPOS_ERROR,
+    error,
   };
 }

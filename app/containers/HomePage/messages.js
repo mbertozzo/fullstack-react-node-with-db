@@ -5,17 +5,17 @@
  */
 import { defineMessages } from 'react-intl';
 
-export const scope = 'boilerplate.containers.HomePage';
+export const scope = 'containers.HomePage';
 
 export default defineMessages({
-  startProjectHeader: {
-    id: `${scope}.start_project.header`,
-    defaultMessage: 'Start your next react project in seconds',
+  projectHeader: {
+    id: `${scope}.project.header`,
+    defaultMessage: 'Welcome!',
   },
-  startProjectMessage: {
-    id: `${scope}.start_project.message`,
+  projectMessage: {
+    id: `${scope}.project.message`,
     defaultMessage:
-      'A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices',
+      'This project consist in a fullstack app. The frontent is made with React.js, the data it consumes are provided by a backend part made with Node.js and MySQL. Please note everything is WIP!',
   },
   trymeHeader: {
     id: `${scope}.tryme.header`,
@@ -23,10 +23,6 @@ export default defineMessages({
   },
   trymeMessage: {
     id: `${scope}.tryme.message`,
-    defaultMessage: 'Show Github repositories by',
-  },
-  trymeAtPrefix: {
-    id: `${scope}.tryme.atPrefix`,
-    defaultMessage: '@',
+    defaultMessage: 'Click the following button to fetch users from the backend!',
   },
 });

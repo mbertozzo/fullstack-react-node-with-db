@@ -23,7 +23,8 @@ router.get('/all', function (req,res){
       return result;
     })
     .then(result => {
-      return res.status(200).json(result)
+      res.status(200).json(result);
+      return;
     })
 })
 
@@ -38,17 +39,19 @@ router.post('/add', function (req,res){
 
   User
     .create(data)
-    .then(() => 
+    .then(() => {
       res.status(200).json({
         message: 'User created successfully.',
         data: data
-      })
-    )
+      });
+      return;
+    })
     .catch(err => {
       console.log(err)
-      return res.status(503).json({
+      res.status(503).json({
         message: 'Error. Unable to complete the task.'
       })
+      return;
     })
 })
 

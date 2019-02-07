@@ -38,7 +38,8 @@ function checkStatus(response) {
  * @return {object}           The response data
  */
 export default function request(url, options) {
-  return fetch(url, options)
+  const finalURL = `http://localhost:3000${url}`;
+  return fetch(finalURL, options)
     .then(checkStatus)
     .then(parseJSON);
 }
