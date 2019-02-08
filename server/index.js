@@ -10,6 +10,7 @@ const port = require('./port');
 const setup = require('./middlewares/frontendMiddleware');
 
 const apiRouter = require('./api/');
+const utils = require('./utils');
 
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok =
@@ -22,6 +23,10 @@ const app = express();
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 app.use(express.json());
 app.use('/api/v1', apiRouter);
+app.use((err, req, res) => {
+  const error = utils.pick(err, ['statusCode', 'body']);
+  res.status(err.statusCode || 500).json(error);
+});
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
