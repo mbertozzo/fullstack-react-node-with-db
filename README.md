@@ -31,7 +31,7 @@ If you want to use `nodemon` to reload Node every time the source code is change
 ## Available features and routes
 At this stage, the endpoints defined are:
 
-* [**GET**] `/api/v1/test-db` &rarr; trys to connect to the database and returns a success or failure message.
+* [**GET**] `/api/v1/test-db` &rarr; tries to connect to the database and returns a success or failure message.
 * [**GET**] `/api/v1/create-table` &rarr; creates the table `user` (the structure is defined in `/server/api/models`). If the table already exists, drops and reinitializes it.
 * [**GET**] `/api/v1/users` &rarr; returns all records in the `user` table.
 * [**GET**] `/api/v1/users/:id` &rarr; returns the record with the given `id`.
