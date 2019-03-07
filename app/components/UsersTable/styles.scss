@@ -1,0 +1,23 @@
+.tableRow {
+  display: flex;
+  width: 100%;
+  align-content: space-between;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #777;
+  }
+
+  &Head {
+    font-weight: bold;
+  }
+
+  p {
+    width: 30%;
+    margin: 0;
+    padding: 10px 0;
+
+    &:first-child {
+      width: 10%;
+    }
+  }
+}

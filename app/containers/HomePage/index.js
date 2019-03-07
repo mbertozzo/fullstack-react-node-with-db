@@ -5,29 +5,26 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
+import Button from 'components/Button';
+import UsersTable from 'components//UsersTable';
 import { makeSelectUsers } from './selectors';
 import messages from './messages';
 import { loadUsers } from './routines';
 import reducer from './reducer';
 import saga from './saga';
 
-import Button from 'components/Button';
-
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.PureComponent {
-
   render() {
-    const { users, onSubmitForm } = this.props;
-    console.log('USERS FROM HOME', users);
+    const { users, _loadUsers } = this.props;
 
     return (
       <article>
@@ -39,38 +36,36 @@ export class HomePage extends React.PureComponent {
           />
         </Helmet>
         <div>
-            <h2><FormattedMessage {...messages.projectHeader} /></h2>
-            <p><FormattedMessage {...messages.projectMessage} /></p>
-            <form onSubmit={this.props.onSubmitForm} style={{ marginBottom: '1em' }}>
-              <p><FormattedMessage {...messages.trymeMessage} /></p>
-              <Button 
-                onClick={onSubmitForm}
-              >
-                Fetch data
-              </Button>
-            </form>
-            {users && <p>Users fetched! Open the Console to check the data.</p>}
+          <h2>
+            <FormattedMessage {...messages.projectHeader} />
+          </h2>
+          <p>
+            <FormattedMessage {...messages.projectMessage} />
+          </p>
+          <form
+            onSubmit={this.props.onSubmitForm}
+            style={{ marginBottom: '1em' }}
+          >
+            <p>
+              <FormattedMessage {...messages.trymeMessage} />
+            </p>
+            <Button onClick={_loadUsers}>Fetch data</Button>
+          </form>
+          <UsersTable {...{ users }} />
         </div>
-      </article> 
+      </article>
     );
   }
 }
 
-HomePage.propTypes = {
-  loading: PropTypes.bool,
-  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  onSubmitForm: PropTypes.func,
-  username: PropTypes.string,
-  onChangeUsername: PropTypes.func,
-};
-
 export function mapDispatchToProps(dispatch) {
   return {
-    onSubmitForm: evt => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadUsers());
-    },
+    ...bindActionCreators(
+      {
+        _loadUsers: loadUsers,
+      },
+      dispatch,
+    ),
   };
 }
 

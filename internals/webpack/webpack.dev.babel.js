@@ -29,6 +29,13 @@ module.exports = require('./webpack.base.babel')({
     },
   },
 
+  cssLoaders: [
+    'style-loader',
+    'css-loader?localIdentName=[local]__[path][name]__[hash:base64:5]&modules&importLoaders=2&sourceMap',
+    'postcss-loader',
+    { loader: 'sass-loader', options: {} },
+  ],
+
   // Add development plugins
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading

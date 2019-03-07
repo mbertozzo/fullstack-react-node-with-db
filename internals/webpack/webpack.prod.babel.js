@@ -6,6 +6,7 @@ const OfflinePlugin = require('offline-plugin');
 const { HashedModuleIdsPlugin } = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = require('./webpack.base.babel')({
   mode: 'production',
@@ -21,6 +22,19 @@ module.exports = require('./webpack.base.babel')({
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].chunk.js',
   },
+
+  cssLoaders: [
+    MiniCssExtractPlugin.loader,
+    {
+      loader: 'css-loader',
+      options: {
+        modules: true,
+        importLoaders: 2,
+      },
+    },
+    'postcss-loader',
+    'sass-loader',
+  ],
 
   optimization: {
     minimize: true,
