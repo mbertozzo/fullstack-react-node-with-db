@@ -6,20 +6,15 @@ import { loadUsers } from './routines';
 const initialState = fromJS({
   loading: false,
   error: false,
-  data: false,
+  data: [],
 });
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
     case loadUsers.TRIGGER:
-      return state
-        .set('loading', true)
-        .set('error', false)
-        .set('data', false)
+      return state.set('loading', true).set('error', false);
     case loadUsers.SUCCESS:
-      return state
-        .set('loading', false)
-        .set('data', action.payload);
+      return state.set('loading', false).set('data', action.payload);
     case loadUsers.FAILURE:
       return state.set('error', action.err).set('loading', false);
     default:

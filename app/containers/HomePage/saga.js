@@ -5,6 +5,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
 
+import { fromJS } from 'immutable';
 import { loadUsers } from './routines';
 
 export function* getUsers() {
@@ -12,7 +13,7 @@ export function* getUsers() {
 
   try {
     const users = yield call(request, requestURL);
-    yield put(loadUsers.success(users));
+    yield put(loadUsers.success(fromJS(users)));
   } catch (err) {
     yield put(loadUsers.failure(err));
   }

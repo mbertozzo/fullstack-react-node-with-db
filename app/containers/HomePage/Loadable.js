@@ -3,8 +3,8 @@
  */
 import loadable from 'loadable-components';
 
-import LoadingIndicator from 'components/LoadingIndicator';
+// import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default loadable(() => import('./index'), {
-  LoadingComponent: LoadingIndicator,
+  // LoadingComponent: CircularProgress,
 });

@@ -13,8 +13,8 @@ import { createStructuredSelector } from 'reselect';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import Button from 'components/Button';
-import UsersTable from 'components//UsersTable';
+import Button from '@material-ui/core/Button';
+import UsersTable from 'components/HomePage/UsersTable';
 import { makeSelectUsers } from './selectors';
 import messages from './messages';
 import { loadUsers } from './routines';
@@ -35,7 +35,7 @@ export class HomePage extends React.PureComponent {
             content="A React.js Boilerplate application homepage"
           />
         </Helmet>
-        <div>
+        <div style={{ padding: 24 }}>
           <h2>
             <FormattedMessage {...messages.projectHeader} />
           </h2>
@@ -49,10 +49,13 @@ export class HomePage extends React.PureComponent {
             <p>
               <FormattedMessage {...messages.trymeMessage} />
             </p>
-            <Button onClick={_loadUsers}>Fetch data</Button>
+            <Button variant="contained" color="primary" onClick={_loadUsers}>
+              Fetch data
+            </Button>
           </form>
-          <UsersTable {...{ users }} />
         </div>
+
+        <UsersTable {...{ users }} />
       </article>
     );
   }
